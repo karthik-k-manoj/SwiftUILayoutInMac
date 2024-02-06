@@ -26,6 +26,10 @@ protocol View_ {
     associatedtype Body: View_
     
     var body: Body { get }
+    
+    // for debugging
+    associatedtype SwiftUIView: View
+    var swiftUI: SwiftUIView { get  }
 }
 
 typealias RenderingContext = CGContext
@@ -44,6 +48,8 @@ extension View_ where Body == Never {
 
 extension Never: View_ {
    typealias Body = Never
+    
+    var swiftUI: Never { fatalError("This should never be called") }
 }
 
 // We will have two step process.
@@ -81,11 +87,31 @@ extension Shape_ {
     var body: some View_ {
         ShapeView(shape: self)
     }
+    
+    var swiftUI: AnyShape {
+        AnyShape(shape: self)
+    }
 }
 
 extension NSColor: View_ {
     var body: some View_ {
         ShapeView(shape: Rectangle_(), color: self)
+    }
+    
+    var swiftUI: some View {
+        Color(self)
+    }
+}
+
+struct AnyShape: Shape {
+    let _path: (CGRect) -> CGPath
+    
+    init<S: Shape_>(shape: S) {
+        _path = shape.path(in:)
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        Path(_path(rect))
     }
 }
 
@@ -104,6 +130,10 @@ struct ShapeView<S: Shape_>: BuiltinView, View_ {
     // Shape in SwiftUI is very felxible. They report the proposed size
     func size(proposed: ProposedSize) -> CGSize {
         proposed
+    }
+    
+    var swiftUI: some View {
+        AnyShape(shape: shape)
     }
 }
 
@@ -143,6 +173,10 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
         
         context.restoreGState()
     }
+    
+    var swiftUI: some View {
+        content.swiftUI.frame(width: width, height: height)
+    }
 }
 
 extension View_ {
@@ -152,15 +186,17 @@ extension View_ {
 }
 
 var sample: some View_ {
-    NSColor.blue.frame(width: 200, height: 100)
+    Ellipse_()
+        .frame(width: 200, height: 100)
+        .frame(width: 300, height: 50)
 }
 
 
 // we call render on fixed frame and then that calculates size for the child
 // but what we want is size and use that size to render our view
-func render<V: View_>(view: V) -> Data {
+func render<V: View_>(view: V, size: CGSize) -> Data {
     // system size given initially
-    let size = CGSize(width: 600, height: 400 )
+  
     return CGContext.pdf(size: size) { context in
         view
             .frame(width: size.width, height: size.height)
@@ -169,9 +205,21 @@ func render<V: View_>(view: V) -> Data {
 }
 
 struct ContentView: View {
+    @State var opacity: Double = 0.5
+    
+    let size = CGSize(width: 600, height: 400 )
+    
     var body: some View {
-        Image(nsImage: NSImage(data: render(view: sample))!)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        VStack {
+            ZStack {
+                Image(nsImage: NSImage(data: render(view: sample, size: size))!)
+                    .opacity(1 - opacity)
+                sample.swiftUI.frame(width: size.width, height: size.height)
+                    .opacity(opacity)
+            }
+            
+            Slider(value: $opacity, in: 0...1)
+        }
     }
 }
 
