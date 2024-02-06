@@ -33,7 +33,8 @@ typealias ProposedSize = CGSize
 
 
 protocol BuiltinView {
-    func render(context: RenderingContext, size: ProposedSize)
+    func render(context: RenderingContext, size: CGSize)
+    func size(proposed: ProposedSize) -> CGSize
     typealias Body = Never
 }
 
@@ -51,7 +52,7 @@ extension Never: View_ {
 // 3) ProposedSize is not really for rendering but for layout step
 
 extension View_ {
-    func _render(context: RenderingContext, size: ProposedSize) {
+    func _render(context: RenderingContext, size: CGSize) {
         // ultimately we need to render so this will be a built in view
         // but we can recursively call body.render for all the views we write
         
@@ -60,6 +61,15 @@ extension View_ {
         } else {
             body._render(context: context, size: size)
         }
+    }
+    
+    func _size(propsed: ProposedSize) -> CGSize {
+        if let buildin = self as? BuiltinView {
+            return buildin.size(proposed: propsed)
+        } else {
+            return body._size(propsed: propsed)
+        }
+        
     }
 }
 
@@ -83,12 +93,17 @@ struct ShapeView<S: Shape_>: BuiltinView, View_ {
     var shape: S
     var color: NSColor = .red
     
-    func render(context: RenderingContext, size: ProposedSize) {
+    func render(context: RenderingContext, size: CGSize) {
         context.saveGState()
         context.setFillColor(color.cgColor)
         context.addPath(shape.path(in: CGRect(origin: .zero, size: size)))
         context.fillPath()
         context.restoreGState()
+    }
+    
+    // Shape in SwiftUI is very felxible. They report the proposed size
+    func size(proposed: ProposedSize) -> CGSize {
+        proposed
     }
 }
 
@@ -104,7 +119,41 @@ struct Ellipse_ : Shape_ {
     }
 }
 
-let sample = NSColor.blue
+struct FixedFrame<Content: View_>: View_, BuiltinView {
+    var width: CGFloat?
+    var height: CGFloat?
+    var content: Content
+    
+    // If there is a fixed size then that's the size proposed to child and it also reports that size to parent
+    // Optimization if there is a fixed size we don't need to ask child for it's size
+    func size(proposed: ProposedSize) -> CGSize {
+        let childSize = content._size(propsed: ProposedSize(width: width ?? proposed.width, height: height ?? proposed.height))
+        return CGSize(width: width ?? childSize.width, height: height ?? childSize.height)
+    }
+    
+    func render(context: RenderingContext, size: CGSize) {
+        context.saveGState()
+        let childSize = content._size(propsed: size)
+        
+        let x = (size.width - childSize.width) / 2
+        let y = (size.height - childSize.height) / 2
+        
+        context.translateBy(x: x, y: y)
+        content._render(context: context, size: childSize)
+        
+        context.restoreGState()
+    }
+}
+
+extension View_ {
+    func frame(width: CGFloat? = nil, height: CGFloat? = nil) -> some View_ {
+        FixedFrame(width: width, height: height, content: self)
+    }
+}
+
+var sample: some View_ {
+    NSColor.blue.frame(width: 200, height: 100)
+}
 
 func render<V: View_>(view: V) -> Data {
     let size = CGSize(width: 600, height: 400 )
