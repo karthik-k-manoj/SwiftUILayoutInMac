@@ -104,7 +104,7 @@ struct Ellipse_ : Shape_ {
     }
 }
 
-let sample = NSColor.blue 
+let sample = NSColor.blue
 
 func render<V: View_>(view: V) -> Data {
     let size = CGSize(width: 600, height: 400 )
@@ -127,3 +127,16 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 // A (body) -> B (body) -> C (body) -> BuiltInVIew
+
+
+// Fixed frame is a modifer why because it modifies a content view i.e. it wraps content view
+
+// inside fixed frame view. If there is a width or height it proposes this to the child view
+
+// ignoring the proposed size given by fixed frame parent. Child then decides to take or not
+
+// Fixed frame view reports width or height it has or it takes size from the child and not proposed size
+
+// Fixed frame view does not have origin rather it has alignment
+
+// In terms of rendering frame centers content by default if not alignemnt is set
