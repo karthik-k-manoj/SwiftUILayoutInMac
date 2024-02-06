@@ -155,10 +155,16 @@ var sample: some View_ {
     NSColor.blue.frame(width: 200, height: 100)
 }
 
+
+// we call render on fixed frame and then that calculates size for the child
+// but what we want is size and use that size to render our view
 func render<V: View_>(view: V) -> Data {
+    // system size given initially
     let size = CGSize(width: 600, height: 400 )
     return CGContext.pdf(size: size) { context in
-        view._render(context: context, size: size)
+        view
+            .frame(width: size.width, height: size.height)
+            ._render(context: context, size: size)
     }
 }
 
