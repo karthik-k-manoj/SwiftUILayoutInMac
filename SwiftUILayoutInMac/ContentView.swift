@@ -193,6 +193,7 @@ struct Border<Content: View_>: View_, BuiltinView {
         context.saveGState()
         context.setStrokeColor(color.cgColor)
         context.stroke(CGRect(origin: .zero, size: size).insetBy(dx: width/2, dy: width/2), width: width)
+        context.restoreGState()
     }
     
     var swiftUI: some View {
@@ -213,8 +214,9 @@ extension View_ {
 var sample: some View_ {
     Ellipse_()
         .frame(width: 200, height: 100)
-        .border(NSColor.blue, width: 20)
+        .border(NSColor.blue, width: 2)
         .frame(width: 300, height: 50)
+        .border(NSColor.yellow, width: 2)
 }
 
 
