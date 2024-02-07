@@ -8,15 +8,6 @@
 import SwiftUI
 import Foundation
 
-var sample: some View_ {
-    Ellipse_()
-        .frame(width: 200, height: 100)
-        .border(NSColor.blue, width: 2)
-        .frame(width: 300, height: 300, alignment: .topLeading)
-        .border(NSColor.yellow, width: 2)
-}
-
-
 // we call render on fixed frame and then that calculates size for the child
 // but what we want is size and use that size to render our view
 func render<V: View_>(view: V, size: CGSize) -> Data {
@@ -32,8 +23,17 @@ func render<V: View_>(view: V, size: CGSize) -> Data {
 
 struct ContentView: View {
     @State var opacity: Double = 0.5
+    @State var width: CGFloat = 300
     
     let size = CGSize(width: 600, height: 400 )
+    
+    var sample: some View_ {
+        Text_("Hello World!")
+            .border(NSColor.blue, width: 2)
+            .frame(width: width.rounded(), height: 300, alignment: .topLeading)
+            .border(NSColor.yellow, width: 2)
+    }
+
     
     var body: some View {
         VStack {
@@ -45,6 +45,10 @@ struct ContentView: View {
             }
             
             Slider(value: $opacity, in: 0...1)
+            HStack {
+                Text("Width \(width.rounded())")
+                Slider(value: $width, in: 0...600)
+            }
         }
     }
 }

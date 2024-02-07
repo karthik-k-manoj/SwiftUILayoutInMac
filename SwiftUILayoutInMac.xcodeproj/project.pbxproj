@@ -17,6 +17,7 @@
 		DA8B7A1F2B73A21A00239AE2 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A1E2B73A21A00239AE2 /* Border.swift */; };
 		DA8B7A212B73A22000239AE2 /* FixedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A202B73A22000239AE2 /* FixedFrame.swift */; };
 		DA8B7A232B73A25B00239AE2 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A222B73A25B00239AE2 /* Alignment.swift */; };
+		DA8B7A252B73A2E100239AE2 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A242B73A2E100239AE2 /* Text.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		DA8B7A1E2B73A21A00239AE2 /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 		DA8B7A202B73A22000239AE2 /* FixedFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFrame.swift; sourceTree = "<group>"; };
 		DA8B7A222B73A25B00239AE2 /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
+		DA8B7A242B73A2E100239AE2 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +66,9 @@
 		DA8B7A062B72003A00239AE2 /* SwiftUILayoutInMac */ = {
 			isa = PBXGroup;
 			children = (
-				DA8B7A192B73A18700239AE2 /* Infrastruture */,
 				DA8B7A162B73A15200239AE2 /* Helper */,
-				DA8B7A072B72003A00239AE2 /* SwiftUILayoutInMacApp.swift */,
-				DA8B7A092B72003A00239AE2 /* ContentView.swift */,
+				DA8B7A192B73A18700239AE2 /* Infrastruture */,
+				DA8B7A262B73A54400239AE2 /* Main */,
 				DA8B7A0B2B72003B00239AE2 /* Assets.xcassets */,
 				DA8B7A102B72003B00239AE2 /* SwiftUILayoutInMac.entitlements */,
 				DA8B7A0D2B72003B00239AE2 /* Preview Content */,
@@ -99,8 +100,18 @@
 				DA8B7A1E2B73A21A00239AE2 /* Border.swift */,
 				DA8B7A202B73A22000239AE2 /* FixedFrame.swift */,
 				DA8B7A222B73A25B00239AE2 /* Alignment.swift */,
+				DA8B7A242B73A2E100239AE2 /* Text.swift */,
 			);
 			path = Infrastruture;
+			sourceTree = "<group>";
+		};
+		DA8B7A262B73A54400239AE2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DA8B7A072B72003A00239AE2 /* SwiftUILayoutInMacApp.swift */,
+				DA8B7A092B72003A00239AE2 /* ContentView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +188,7 @@
 				DA8B7A232B73A25B00239AE2 /* Alignment.swift in Sources */,
 				DA8B7A0A2B72003A00239AE2 /* ContentView.swift in Sources */,
 				DA8B7A1F2B73A21A00239AE2 /* Border.swift in Sources */,
+				DA8B7A252B73A2E100239AE2 /* Text.swift in Sources */,
 				DA8B7A1B2B73A19700239AE2 /* View+BuiltinView.swift in Sources */,
 				DA8B7A1D2B73A1F400239AE2 /* Shape+Color.swift in Sources */,
 				DA8B7A082B72003A00239AE2 /* SwiftUILayoutInMacApp.swift in Sources */,
