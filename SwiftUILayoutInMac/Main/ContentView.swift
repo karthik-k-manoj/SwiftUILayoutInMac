@@ -27,8 +27,12 @@ struct ContentView: View {
     
     let size = CGSize(width: 600, height: 400 )
     
+    // overlay first renders its child in this case it is Ellipse and then it lays other view on top of it
+    // it takes the child size and proposes to the other view.
+    // That's why you can use a gemoetry reader inside an overlay to measure the underlying view
     var sample: some View_ {
-        Text_("Hello World!")
+        Ellipse_()
+            .overlay(Text_("Hello World!"), alignment: .topLeading)
             .border(NSColor.blue, width: 2)
             .frame(width: width.rounded(), height: 300, alignment: .topLeading)
             .border(NSColor.yellow, width: 2)

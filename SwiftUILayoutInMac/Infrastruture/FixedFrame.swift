@@ -25,10 +25,7 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
         context.saveGState()
         let childSize = content._size(propsed: size)
         
-        let selfPoint = alignment.point(for: size)
-        let childPoint = alignment.point(for: childSize)
-        
-        context.translateBy(x: selfPoint.x - childPoint.x, y: selfPoint.y - childPoint.y)
+        context.align(childSize, in: size, alignment: alignment)
         content._render(context: context, size: childSize)
         
         context.restoreGState()

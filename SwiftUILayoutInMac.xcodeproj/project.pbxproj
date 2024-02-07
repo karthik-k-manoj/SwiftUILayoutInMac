@@ -18,6 +18,7 @@
 		DA8B7A212B73A22000239AE2 /* FixedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A202B73A22000239AE2 /* FixedFrame.swift */; };
 		DA8B7A232B73A25B00239AE2 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A222B73A25B00239AE2 /* Alignment.swift */; };
 		DA8B7A252B73A2E100239AE2 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A242B73A2E100239AE2 /* Text.swift */; };
+		DA8B7A282B73B58A00239AE2 /* Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A272B73B58A00239AE2 /* Overlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		DA8B7A202B73A22000239AE2 /* FixedFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFrame.swift; sourceTree = "<group>"; };
 		DA8B7A222B73A25B00239AE2 /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
 		DA8B7A242B73A2E100239AE2 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		DA8B7A272B73B58A00239AE2 /* Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				DA8B7A202B73A22000239AE2 /* FixedFrame.swift */,
 				DA8B7A222B73A25B00239AE2 /* Alignment.swift */,
 				DA8B7A242B73A2E100239AE2 /* Text.swift */,
+				DA8B7A272B73B58A00239AE2 /* Overlay.swift */,
 			);
 			path = Infrastruture;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			files = (
 				DA8B7A212B73A22000239AE2 /* FixedFrame.swift in Sources */,
 				DA8B7A232B73A25B00239AE2 /* Alignment.swift in Sources */,
+				DA8B7A282B73B58A00239AE2 /* Overlay.swift in Sources */,
 				DA8B7A0A2B72003A00239AE2 /* ContentView.swift in Sources */,
 				DA8B7A1F2B73A21A00239AE2 /* Border.swift in Sources */,
 				DA8B7A252B73A2E100239AE2 /* Text.swift in Sources */,
