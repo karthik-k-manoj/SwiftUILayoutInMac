@@ -179,15 +179,41 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
     }
 }
 
+struct Border<Content: View_>: View_, BuiltinView {
+    var color: NSColor
+    var width: CGFloat
+    var content: Content
+    
+    func size(proposed: ProposedSize) -> CGSize {
+        content._size(propsed: proposed )
+    }
+    
+    func render(context: RenderingContext, size: CGSize) {
+        content._render(context: context, size: size)
+        context.saveGState()
+        context.setStrokeColor(color.cgColor)
+        context.stroke(CGRect(origin: .zero, size: size).insetBy(dx: width/2, dy: width/2), width: width)
+    }
+    
+    var swiftUI: some View {
+        content.swiftUI.border(Color(color), width: width)
+    }
+}
+
 extension View_ {
     func frame(width: CGFloat? = nil, height: CGFloat? = nil) -> some View_ {
         FixedFrame(width: width, height: height, content: self)
+    }
+    
+    func border(_ color: NSColor, width: CGFloat) -> some View_ {
+        Border(color: color, width: width, content: self)
     }
 }
 
 var sample: some View_ {
     Ellipse_()
         .frame(width: 200, height: 100)
+        .border(NSColor.blue, width: 20)
         .frame(width: 300, height: 50)
 }
 
