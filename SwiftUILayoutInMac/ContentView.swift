@@ -149,9 +149,18 @@ struct Ellipse_ : Shape_ {
     }
 }
 
+extension Alignment_ {
+    func point(for size: CGSize) -> CGPoint {
+        let x = horizontal.alginmentID.defaultValue(in: size)
+        let y = vertical.alginmentID.defaultValue(in: size)
+        return CGPoint(x: x, y: y)
+    }
+}
+
 struct FixedFrame<Content: View_>: View_, BuiltinView {
     var width: CGFloat?
     var height: CGFloat?
+    var alignment: Alignment_
     var content: Content
     
     // If there is a fixed size then that's the size proposed to child and it also reports that size to parent
@@ -165,17 +174,17 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
         context.saveGState()
         let childSize = content._size(propsed: size)
         
-        let x = (size.width - childSize.width) / 2
-        let y = (size.height - childSize.height) / 2
+        let selfPoint = alignment.point(for: size)
+        let childPoint = alignment.point(for: childSize)
         
-        context.translateBy(x: x, y: y)
+        context.translateBy(x: selfPoint.x - childPoint.x, y: selfPoint.y - childPoint.y)
         content._render(context: context, size: childSize)
         
         context.restoreGState()
     }
     
     var swiftUI: some View {
-        content.swiftUI.frame(width: width, height: height)
+        content.swiftUI.frame(width: width, height: height, alignment: alignment.swiftUI)
     }
 }
 
@@ -202,8 +211,8 @@ struct Border<Content: View_>: View_, BuiltinView {
 }
 
 extension View_ {
-    func frame(width: CGFloat? = nil, height: CGFloat? = nil) -> some View_ {
-        FixedFrame(width: width, height: height, content: self)
+    func frame(width: CGFloat? = nil, height: CGFloat? = nil, alignment: Alignment_ = .center) -> some View_ {
+        FixedFrame(width: width, height: height, alignment: alignment, content: self)
     }
     
     func border(_ color: NSColor, width: CGFloat) -> some View_ {
@@ -211,11 +220,75 @@ extension View_ {
     }
 }
 
+struct Alignment_ {
+    var horizontal: HorizontalAlignment_
+    var vertical: VerticalAlignment_
+    
+    var swiftUI: Alignment {
+        Alignment(horizontal: horizontal.swiftUI, vertical: vertical.swiftUI)
+    }
+    
+    static let center = Self(horizontal: .center, vertical: .center)
+    static let topLeading = Self(horizontal: .leading, vertical: .top)
+}
+
+struct HorizontalAlignment_ {
+    var alginmentID: AlignmentID_.Type
+    var swiftUI: HorizontalAlignment
+    
+    static let leading = Self(alginmentID: HLeading.self, swiftUI: .leading)
+    static let trailing = Self(alginmentID: HTrailing.self, swiftUI: .trailing)
+    static let center = Self(alginmentID: HCenter.self, swiftUI: .center)
+}
+
+struct VerticalAlignment_ {
+    var alginmentID: AlignmentID_.Type
+    var swiftUI: VerticalAlignment
+    
+    static let top = Self(alginmentID: VTop.self, swiftUI: .top)
+    static let center = Self(alginmentID: VCenter.self, swiftUI: .center)
+}
+
+protocol AlignmentID_ {
+    static func defaultValue(in context: CGSize) -> CGFloat
+}
+
+enum VTop: AlignmentID_ {
+    static func defaultValue(in context: CGSize) -> CGFloat {
+        context.height
+    }
+}
+
+enum VCenter: AlignmentID_ {
+    static func defaultValue(in context: CGSize) -> CGFloat {
+        context.height / 2
+    }
+}
+
+enum HLeading: AlignmentID_ {
+    static func defaultValue(in context: CGSize) -> CGFloat {
+        0
+    }
+}
+
+enum HCenter: AlignmentID_ {
+    static func defaultValue(in context: CGSize) -> CGFloat {
+        context.width / 2
+    }
+}
+
+enum HTrailing: AlignmentID_ {
+    static func defaultValue(in context: CGSize) -> CGFloat {
+        context.width
+    }
+}
+
+
 var sample: some View_ {
     Ellipse_()
         .frame(width: 200, height: 100)
         .border(NSColor.blue, width: 2)
-        .frame(width: 300, height: 50)
+        .frame(width: 300, height: 300, alignment: .topLeading)
         .border(NSColor.yellow, width: 2)
 }
 
@@ -228,6 +301,7 @@ func render<V: View_>(view: V, size: CGSize) -> Data {
     return CGContext.pdf(size: size) { context in
         view
             .frame(width: size.width, height: size.height)
+            .border(NSColor.green, width: 2)
             ._render(context: context, size: size)
     }
 }
@@ -241,7 +315,7 @@ struct ContentView: View {
         VStack {
             ZStack {
                 Image(nsImage: NSImage(data: render(view: sample, size: size))!)
-                    .opacity(1 - opacity)
+                    .opacity(1)
                 sample.swiftUI.frame(width: size.width, height: size.height)
                     .opacity(opacity)
             }
@@ -271,3 +345,6 @@ struct ContentView_Previews: PreviewProvider {
 // Fixed frame view does not have origin rather it has alignment
 
 // In terms of rendering frame centers content by default if not alignemnt is set
+
+
+
