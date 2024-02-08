@@ -19,6 +19,7 @@
 		DA8B7A232B73A25B00239AE2 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A222B73A25B00239AE2 /* Alignment.swift */; };
 		DA8B7A252B73A2E100239AE2 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A242B73A2E100239AE2 /* Text.swift */; };
 		DA8B7A282B73B58A00239AE2 /* Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A272B73B58A00239AE2 /* Overlay.swift */; };
+		DA8B7A2A2B74F01300239AE2 /* GeometryReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A292B74F01300239AE2 /* GeometryReader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		DA8B7A222B73A25B00239AE2 /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
 		DA8B7A242B73A2E100239AE2 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		DA8B7A272B73B58A00239AE2 /* Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlay.swift; sourceTree = "<group>"; };
+		DA8B7A292B74F01300239AE2 /* GeometryReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				DA8B7A1C2B73A1F400239AE2 /* Shape+Color.swift */,
 				DA8B7A1E2B73A21A00239AE2 /* Border.swift */,
 				DA8B7A202B73A22000239AE2 /* FixedFrame.swift */,
+				DA8B7A292B74F01300239AE2 /* GeometryReader.swift */,
 				DA8B7A222B73A25B00239AE2 /* Alignment.swift */,
 				DA8B7A242B73A2E100239AE2 /* Text.swift */,
 				DA8B7A272B73B58A00239AE2 /* Overlay.swift */,
@@ -197,6 +200,7 @@
 				DA8B7A1D2B73A1F400239AE2 /* Shape+Color.swift in Sources */,
 				DA8B7A082B72003A00239AE2 /* SwiftUILayoutInMacApp.swift in Sources */,
 				DA8B7A182B73A16700239AE2 /* CGContext+pdf.swift in Sources */,
+				DA8B7A2A2B74F01300239AE2 /* GeometryReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

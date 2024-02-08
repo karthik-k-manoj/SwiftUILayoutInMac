@@ -8,6 +8,9 @@
 import SwiftUI
 import Foundation
 
+
+// Ellipse -> Overlay (Geomtry Reader -> Text) -> Border -> Frame -> Border -> Frame -> Border
+
 // we call render on fixed frame and then that calculates size for the child
 // but what we want is size and use that size to render our view
 func render<V: View_>(view: V, size: CGSize) -> Data {
@@ -32,7 +35,9 @@ struct ContentView: View {
     // That's why you can use a gemoetry reader inside an overlay to measure the underlying view
     var sample: some View_ {
         Ellipse_()
-            .overlay(Text_("Hello World!"), alignment: .topLeading)
+            .overlay(GeometryReader_(content: { size in
+                Text_("\(Int(size.width)) x \(Int(size.height))")
+            }))
             .border(NSColor.blue, width: 2)
             .frame(width: width.rounded(), height: 300, alignment: .topLeading)
             .border(NSColor.yellow, width: 2)

@@ -26,6 +26,7 @@ struct Alignment_ {
     
     static let center = Self(horizontal: .center, vertical: .center)
     static let topLeading = Self(horizontal: .leading, vertical: .top)
+    static let topTrailing = Self(horizontal: .trailing, vertical: .top)
 }
 
 struct HorizontalAlignment_ {
