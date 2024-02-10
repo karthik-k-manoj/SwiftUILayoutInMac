@@ -24,6 +24,8 @@ func render<V: View_>(view: V, size: CGSize) -> Data {
     }
 }
 
+// In swift UI ellipse is 150 wide and reported size is 300
+// In our implementaion ellipse is 150 and reported size is 150
 struct ContentView: View {
     @State var opacity: Double = 0.5
     @State var width: CGFloat = 300
@@ -36,7 +38,7 @@ struct ContentView: View {
     // it takes the child size and proposes to the other view.
     // That's why you can use a gemoetry reader inside an overlay to measure the underlying view
     var sample: some View_ {
-        Ellipse_()
+        Ellipse_() // content size is same as the proposed size.
             .frame(width: 150)
             .frame(
                 minWidth: minWidth.enabled ?  minWidth.0.rounded() : nil,
@@ -50,6 +52,24 @@ struct ContentView: View {
             .border(NSColor.yellow, width: 2)
     }
 
+    // 300 is propsed width and ellipse is 150 wide
+    // flexibile frame stays at 150
+    
+    // if we propise size that is smaller  60 and min width is 100 it will be capped to 100
+    // we propose 100 to fixed frame but it propose 150 to ellipse. Ellipse says I am 150
+    // Fixed frame says I am 150 Then flexible frame ignores child size of 150 but I am gonna be 100
+    // We propose 60 but child has 100 as min width and it should be 100 but we could also think
+    // I only specifed min width and the content says I am 150 why does it come 150
+    //
+    
+    // 100 > 60 so width should be 100
+    // I have only specifier minwidth as 100 content says is 150 then why does flexibale frame become 150
+    // Flexible frame has the tendency to always become what is proposed that is kind higher priority
+    // Since we only proposed 60, 100 is closer to 60 so 100 is selected
+    
+    // But if proposed width is larger it will not go beyond content size
+    // In the absence of maxWidth value, content size becomes maxWidth somehow. i.e. it ranges from
+    // minWidth to content size width max value
     
     var body: some View {
         VStack {
