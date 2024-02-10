@@ -14,7 +14,7 @@ struct Border<Content: View_>: View_, BuiltinView {
     var content: Content
     
     func size(proposed: ProposedSize) -> CGSize {
-        content._size(propsed: proposed )
+        content._size(propsed: proposed)
     }
     
     func render(context: RenderingContext, size: CGSize) {
