@@ -18,8 +18,25 @@ protocol View_ {
 }
 
 typealias RenderingContext = CGContext
-typealias ProposedSize = CGSize
 
+struct ProposedSize {
+    var width: CGFloat?
+    var height: CGFloat?
+}
+
+extension ProposedSize {
+    init(_ cgSize: CGSize) {
+        self.init(width: cgSize.width, height: cgSize.height)
+    }
+    
+    var orMax: CGSize {
+        CGSize(width: width ?? .greatestFiniteMagnitude, height: height ?? .greatestFiniteMagnitude)
+    }
+    
+    var orDefault: CGSize {
+        CGSize(width: width ?? 10, height: height ?? 10)
+    }
+}
 
 protocol BuiltinView {
     func render(context: RenderingContext, size: CGSize)

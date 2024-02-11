@@ -24,11 +24,11 @@ struct Overlay<Content: View_, O: View_>: View_, BuiltinView {
     // size is the size which we get to render
     func render(context: RenderingContext, size: CGSize) {
         // first child content but in backgeound it will be background and then content
-        content._render(context: context, size: size)
+        content._render (context: context, size: size)
         // renders content with size (whihc is reported size of the overlay i.e. content own size
         
         // This object then proposes size (content size) to it's overlay view
-        let childSize = overlay._size(propsed: size)
+        let childSize = overlay._size(propsed: ProposedSize(size))
         context.saveGState()
         context.align(childSize, in: size, alignment: alignment)
         overlay._render(context: context, size: childSize)

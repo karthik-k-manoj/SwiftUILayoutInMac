@@ -12,7 +12,7 @@ struct GeometryReader_<Content: View_>: View_, BuiltinView {
     
     func render(context: RenderingContext, size: CGSize) {
         let child = content(size)
-        let childSize = child._size(propsed: size)
+        let childSize = child._size(propsed: ProposedSize(size))
         context.saveGState()
         context.align(childSize, in: size, alignment: .center)
         child._render(context: context, size: childSize)
@@ -20,7 +20,7 @@ struct GeometryReader_<Content: View_>: View_, BuiltinView {
     }
     
     func size(proposed: ProposedSize) -> CGSize {
-        proposed
+        proposed.orDefault
     }
      
     var swiftUI: some View {

@@ -23,7 +23,7 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
     
     func render(context: RenderingContext, size: CGSize) {
         context.saveGState()
-        let childSize = content._size(propsed: size)
+        let childSize = content._size(propsed: ProposedSize(size))
         
         context.align(childSize, in: size, alignment: alignment)
         content._render(context: context, size: childSize)
@@ -40,5 +40,32 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
 extension View_ {
     func frame(width: CGFloat? = nil, height: CGFloat? = nil, alignment: Alignment_ = .center) -> some View_ {
         FixedFrame(width: width, height: height, alignment: alignment, content: self)
+    }
+}
+
+struct FixedSize<Content: View_>: View_, BuiltinView {
+    var content: Content
+    var horizontal: Bool
+    var vertical: Bool
+    
+    func render(context: RenderingContext, size: CGSize) {
+        content._render(context: context, size: size)
+    }
+    
+    func size(proposed p: ProposedSize) -> CGSize {
+        var proposed = p
+        if horizontal { proposed.width = nil }
+        if vertical { proposed.height = nil }
+        return content._size(propsed: proposed)
+    }
+    
+    var swiftUI: some View {
+        content.swiftUI.fixedSize(horizontal: horizontal, vertical: vertical)
+    }
+}
+
+extension View_ {
+    func fixedSize(horizontal: Bool = true, vertical: Bool = true) -> some View_ {
+        FixedSize(content: self, horizontal: horizontal, vertical: vertical)
     }
 }

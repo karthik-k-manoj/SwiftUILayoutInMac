@@ -58,7 +58,7 @@ struct ShapeView<S: Shape_>: BuiltinView, View_ {
     
     // Shape in SwiftUI is very felxible. They report the proposed size
     func size(proposed: ProposedSize) -> CGSize {
-        proposed
+        proposed.orMax
     }
     
     var swiftUI: some View {

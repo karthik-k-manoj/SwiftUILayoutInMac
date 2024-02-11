@@ -33,7 +33,7 @@ struct Text_: View_, BuiltinView {
             framesetter,
             CFRange(),
             nil,
-            proposed,
+            proposed.orMax,
             nil
         )
     }

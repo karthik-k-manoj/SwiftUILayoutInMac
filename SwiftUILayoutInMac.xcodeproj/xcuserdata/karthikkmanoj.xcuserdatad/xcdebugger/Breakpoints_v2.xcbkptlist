@@ -14,8 +14,56 @@
             filePath = "SwiftUILayoutInMac/Infrastruture/FlexibleFrame.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "size(proposed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "20AC082C-EC58-4337-AC3A-E83BF5D8128A - 57bd1efada7e5f0a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUILayoutInMac.FlexibleFrame.size(proposed: __C.CGSize) -&gt; __C.CGSize"
+                  moduleName = "SwiftUILayoutInMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karthikkmanoj/Documents/SwiftUILayoutInMac/SwiftUILayoutInMac/Infrastruture/FlexibleFrame.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "276">
+               </Location>
+               <Location
+                  uuid = "20AC082C-EC58-4337-AC3A-E83BF5D8128A - da7c7f3b89ffb5c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUILayoutInMac.FlexibleFrame.size(proposed: SwiftUILayoutInMac.ProposedSize) -&gt; __C.CGSize"
+                  moduleName = "SwiftUILayoutInMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karthikkmanoj/Documents/SwiftUILayoutInMac/SwiftUILayoutInMac/Infrastruture/FlexibleFrame.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "952">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D13DD8C-6320-46BA-BC4F-E6BA5F230CB0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftUILayoutInMac/Infrastruture/FlexibleFrame.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "size(proposed:)"
             landmarkType = "7">
          </BreakpointContent>

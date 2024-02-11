@@ -38,15 +38,15 @@ struct ContentView: View {
     // it takes the child size and proposes to the other view.
     // That's why you can use a gemoetry reader inside an overlay to measure the underlying view
     var sample: some View_ {
-        Ellipse_() // content size is same as the proposed size.
-            .frame(width: 150)
-            .frame(
-                minWidth: minWidth.enabled ?  minWidth.0.rounded() : nil,
-                maxWidth: maxWidth.enabled ? maxWidth.0.rounded() : nil
-            )
-            .overlay(GeometryReader_(content: { size in
-                Text_("\(Int(size.width)) x \(Int(size.height))")
-            }))
+        Text_("Hello World")
+            .fixedSize()
+//            .frame(
+//                minWidth: minWidth.enabled ?  minWidth.0.rounded() : nil,
+//                maxWidth: maxWidth.enabled ? maxWidth.0.rounded() : nil
+//            )
+//            .overlay(GeometryReader_(content: { size in
+//                Text_("\(Int(size.width)) x \(Int(size.height))")
+//            }))
             .border(NSColor.blue, width: 2)
             .frame(width: width.rounded(), height: 300, alignment: .center)
             .border(NSColor.yellow, width: 2)
