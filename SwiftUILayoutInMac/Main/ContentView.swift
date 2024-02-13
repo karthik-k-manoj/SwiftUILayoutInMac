@@ -29,6 +29,7 @@ func render<V: View_>(view: V, size: CGSize) -> Data {
 struct ContentView: View {
     @State var opacity: Double = 0.5
     @State var width: CGFloat = 300
+    @State var height: CGFloat = 300
     @State var minWidth: (CGFloat, enabled: Bool) = (100, true)
     @State var maxWidth: (CGFloat, enabled: Bool) = (400, true)
     
@@ -38,17 +39,19 @@ struct ContentView: View {
     // it takes the child size and proposes to the other view.
     // That's why you can use a gemoetry reader inside an overlay to measure the underlying view
     var sample: some View_ {
-        Text_("Hello World")
-            .fixedSize()
-//            .frame(
-//                minWidth: minWidth.enabled ?  minWidth.0.rounded() : nil,
-//                maxWidth: maxWidth.enabled ? maxWidth.0.rounded() : nil
-//            )
-//            .overlay(GeometryReader_(content: { size in
-//                Text_("\(Int(size.width)) x \(Int(size.height))")
-//            }))
-            .border(NSColor.blue, width: 2)
-            .frame(width: width.rounded(), height: 300, alignment: .center)
+        HStack_(children: [
+            AnyView_(Rectangle_()
+                .frame(height: 100)
+                .border(.green, width: 5)
+            ),
+            AnyView_(Rectangle_()
+                .frame(height: 200)
+                .border(.blue, width: 5)
+            )
+        ],
+                alignment: .center 
+        )
+        .frame(width: width.rounded(), height: height.rounded(), alignment: .center)
             .border(NSColor.yellow, width: 2)
     }
 
@@ -84,6 +87,11 @@ struct ContentView: View {
             HStack {
                 Text("Width \(width.rounded())")
                 Slider(value: $width, in: 0...600)
+            }
+            
+            HStack {
+                Text("Height \(height.rounded())")
+                Slider(value: $height, in: 0...600)
             }
             
             HStack {

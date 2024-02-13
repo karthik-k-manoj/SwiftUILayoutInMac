@@ -7,47 +7,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "20AC082C-EC58-4337-AC3A-E83BF5D8128A"
+            uuid = "98381D0C-DF88-44C2-B80B-4A8BDA550636"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftUILayoutInMac/Infrastruture/FlexibleFrame.swift"
+            filePath = "SwiftUILayoutInMac/Infrastruture/HStack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "size(proposed:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "render(context:size:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "20AC082C-EC58-4337-AC3A-E83BF5D8128A - 57bd1efada7e5f0a"
+                  uuid = "98381D0C-DF88-44C2-B80B-4A8BDA550636 - d0679b181b83f553"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SwiftUILayoutInMac.FlexibleFrame.size(proposed: __C.CGSize) -&gt; __C.CGSize"
+                  symbolName = "SwiftUILayoutInMac.HStack_.render(context: __C.CGContextRef, size: __C.CGSize) -&gt; ()"
                   moduleName = "SwiftUILayoutInMac"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karthikkmanoj/Documents/SwiftUILayoutInMac/SwiftUILayoutInMac/Infrastruture/FlexibleFrame.swift"
+                  urlString = "file:///Users/karthikkmanoj/Documents/SwiftUILayoutInMac/SwiftUILayoutInMac/Infrastruture/HStack.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "276">
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "140">
                </Location>
                <Location
-                  uuid = "20AC082C-EC58-4337-AC3A-E83BF5D8128A - da7c7f3b89ffb5c7"
+                  uuid = "98381D0C-DF88-44C2-B80B-4A8BDA550636 - d0679b181b83f553"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SwiftUILayoutInMac.FlexibleFrame.size(proposed: SwiftUILayoutInMac.ProposedSize) -&gt; __C.CGSize"
+                  symbolName = "SwiftUILayoutInMac.HStack_.render(context: __C.CGContextRef, size: __C.CGSize) -&gt; ()"
                   moduleName = "SwiftUILayoutInMac"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karthikkmanoj/Documents/SwiftUILayoutInMac/SwiftUILayoutInMac/Infrastruture/FlexibleFrame.swift"
+                  urlString = "file:///Users/karthikkmanoj/Documents/SwiftUILayoutInMac/SwiftUILayoutInMac/Infrastruture/HStack.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "952">
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "124">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,17 +55,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9D13DD8C-6320-46BA-BC4F-E6BA5F230CB0"
+            uuid = "FB6A0E64-EE45-4F84-9850-66B52EF00EE9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftUILayoutInMac/Infrastruture/FlexibleFrame.swift"
+            filePath = "SwiftUILayoutInMac/Infrastruture/HStack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "size(proposed:)"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "render(context:size:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FB6A0E64-EE45-4F84-9850-66B52EF00EE9 - d0679b181b83f6d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUILayoutInMac.HStack_.render(context: __C.CGContextRef, size: __C.CGSize) -&gt; ()"
+                  moduleName = "SwiftUILayoutInMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karthikkmanoj/Documents/SwiftUILayoutInMac/SwiftUILayoutInMac/Infrastruture/HStack.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "FB6A0E64-EE45-4F84-9850-66B52EF00EE9 - d0679b181b83f6d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUILayoutInMac.HStack_.render(context: __C.CGContextRef, size: __C.CGSize) -&gt; ()"
+                  moduleName = "SwiftUILayoutInMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/karthikkmanoj/Documents/SwiftUILayoutInMac/SwiftUILayoutInMac/Infrastruture/HStack.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
