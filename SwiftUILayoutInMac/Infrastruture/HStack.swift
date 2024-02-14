@@ -54,25 +54,37 @@ struct HStack_: View_, BuiltinView {
             }
          }
     }
-    
+       
     func layout(proposed: ProposedSize)  {
-        var remainingWidth = proposed.width! // TODO
-        var remaining = children
-        var sizes: [CGSize] = []
+        let flexibility: [CGFloat] = children.map { child in
+            let lower = child.size(proposed: ProposedSize(width: 0, height: proposed.height)).width
+            let upper = child.size(proposed: ProposedSize(width: .greatestFiniteMagnitude, height: proposed.height)).width
+            return upper - lower
+        }
         
-        while !remaining.isEmpty {
-            let width = remainingWidth / CGFloat(remaining.count)
-            let child = remaining.removeFirst()
+        var remainingIndices = children.indices.sorted { l, r in
+            flexibility[l] < flexibility[r]
+        }
+        
+        var remainingWidth = proposed.width! // TODO
+        var sizes: [CGSize] = Array(repeating: .zero, count: children.count)
+        
+        while !remainingIndices.isEmpty {
+            let width = remainingWidth / CGFloat(remainingIndices.count)
+            let idx = remainingIndices.removeFirst()
+            let child = children[idx]
             let childSize = child.size(proposed: ProposedSize(width: width, height: proposed.height))
-            sizes.append(childSize)
+            sizes[idx] = childSize
             remainingWidth -= childSize.width
-            // TODO check what happens when remaining width < 0
+             
+            if remainingWidth < 0 {
+                remainingWidth = 0
+            }
         }
         
         self.sizes = sizes
     }
 }
-
 
 class AnyViewBase: BuiltinView {
     func render(context: RenderingContext, size: CGSize) {

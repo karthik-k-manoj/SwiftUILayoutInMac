@@ -30,18 +30,18 @@ struct FlexibleFrame<Content: View_>: View_, BuiltinView {
         
         if let min = minWidth, min > _proposed.width {
             _proposed.width = min
-            print("Proposed with in min", _proposed.width )
+         //   print("Proposed with in min", _proposed.width )
         }
         
         if let max = maxWidth, max < _proposed.width {
             _proposed.width = max
-            print("Proposed with in min", _proposed.width )
+           // print("Proposed with in min", _proposed.width )
         }
         
         var result = content._size(propsed: ProposedSize(_proposed))
         
         if let m = minWidth {
-            print("Min Width: \(minWidth), Result Width: \(result.width), Propsoed Width: \(_proposed.width)")
+           // print("Min Width: \(minWidth), Result Width: \(result.width), Propsoed Width: \(_proposed.width)")
             result.width = max(m, min(result.width, _proposed.width))
             print("Result width in min", result.width)
         }
@@ -49,7 +49,7 @@ struct FlexibleFrame<Content: View_>: View_, BuiltinView {
         // if have only maxWidth then clamp content width to max width
 
         if let m = maxWidth {
-            print("Max Width: \(maxWidth), Result Width: \(result.width), Propsoed Width: \(_proposed.width)")
+            //print("Max Width: \(maxWidth), Result Width: \(result.width), Propsoed Width: \(_proposed.width)")
             result.width = min(m, max(result.width, _proposed.width))
         }
         return result

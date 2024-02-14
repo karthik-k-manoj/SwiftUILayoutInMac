@@ -49,15 +49,16 @@ struct ContentView: View {
     var sample: some View_ {
         HStack_(children: [
             AnyView_(Rectangle_()
+                .frame(minWidth: 150, maxWidth: 250)
+                .border(.blue, width: 5)
+                .measured
+            ),
+            AnyView_(Rectangle_()
                 .frame(maxWidth: 100)
                 .border(.green, width: 5)
                 .measured
             ),
-            AnyView_(Rectangle_()
-                .frame(width: 50)
-                .border(.blue, width: 5)
-                .measured
-            )
+            
         ],
                 alignment: .center
         )
