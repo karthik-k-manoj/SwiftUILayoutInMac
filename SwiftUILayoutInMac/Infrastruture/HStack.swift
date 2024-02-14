@@ -7,14 +7,24 @@
 
 import SwiftUI
 
+@propertyWrapper
+final class LayoutState<A> {
+    var wrappedValue: A
+    
+    init(wrappedValue: A) {
+        self.wrappedValue = wrappedValue
+    }
+}
+
 struct HStack_: View_, BuiltinView {
     let children: [AnyView_]
     var alignment: VerticalAlignment_ = .center
     var spacing: CGFloat? = 0
+    @LayoutState var sizes: [CGSize] = []
     
     func render(context: RenderingContext, size: CGSize) {
         let stackY = alignment.alginmentID.defaultValue(in: size )
-        let sizes = layout(proposed: ProposedSize(size))
+          
         var currentX: CGFloat = 0
         
         for idx in children.indices {
@@ -30,10 +40,10 @@ struct HStack_: View_, BuiltinView {
     }
     
     func size(proposed: ProposedSize) -> CGSize {
-        let sizes = layout(proposed: proposed)
+        layout(proposed: proposed)
         let width = sizes.reduce(0) { $0 + $1.width }
         let height = sizes.reduce(0) { max($0, $1.height) }
-        
+         
         return CGSize(width: width, height: height)
     }
     
@@ -45,7 +55,7 @@ struct HStack_: View_, BuiltinView {
          }
     }
     
-    func layout(proposed: ProposedSize) -> [CGSize] {
+    func layout(proposed: ProposedSize)  {
         var remainingWidth = proposed.width! // TODO
         var remaining = children
         var sizes: [CGSize] = []
@@ -59,7 +69,7 @@ struct HStack_: View_, BuiltinView {
             // TODO check what happens when remaining width < 0
         }
         
-        return sizes
+        self.sizes = sizes
     }
 }
 

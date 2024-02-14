@@ -24,6 +24,14 @@ func render<V: View_>(view: V, size: CGSize) -> Data {
     }
 }
 
+extension View_ {
+    var measured: some View_ {
+        overlay(GeometryReader_(content: { size in
+            Text_("\(Int(size.width))")
+        }))
+    }
+}
+
 // In swift UI ellipse is 150 wide and reported size is 300
 // In our implementaion ellipse is 150 and reported size is 150
 struct ContentView: View {
@@ -41,17 +49,19 @@ struct ContentView: View {
     var sample: some View_ {
         HStack_(children: [
             AnyView_(Rectangle_()
-                .frame(height: 100)
+                .frame(maxWidth: 100)
                 .border(.green, width: 5)
+                .measured
             ),
             AnyView_(Rectangle_()
-                .frame(height: 200)
+                .frame(width: 50)
                 .border(.blue, width: 5)
+                .measured
             )
         ],
-                alignment: .center 
+                alignment: .center
         )
-        .frame(width: width.rounded(), height: height.rounded(), alignment: .center)
+        .frame(width: width.rounded(), height: 100, alignment: .center)
             .border(NSColor.yellow, width: 2)
     }
 
