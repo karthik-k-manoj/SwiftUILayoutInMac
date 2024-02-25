@@ -24,6 +24,7 @@ struct Alignment_ {
         Alignment(horizontal: horizontal.swiftUI, vertical: vertical.swiftUI)
     }
     
+    static let leading = Self(horizontal: .leading, vertical: .center)
     static let center = Self(horizontal: .center, vertical: .center)
     static let topLeading = Self(horizontal: .leading, vertical: .top)
     static let topTrailing = Self(horizontal: .trailing, vertical: .top)
@@ -80,3 +81,36 @@ enum HTrailing: AlignmentID_ {
     }
 }
 
+struct CustomHAlignmentGuide<Content: View_>: View_, BuiltinView {
+    var content: Content
+    var alignment: HorizontalAlignment_
+    var computeValue: (CGSize) -> CGFloat
+    
+    func render(context: RenderingContext, size: CGSize) {
+        content._render(context: context, size: size)
+    }
+    
+    func size(proposed: ProposedSize) -> CGSize {
+        content._size(propsed: proposed)
+    }
+    
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        if alignment.alginmentID == self.alignment.alginmentID {
+            return computeValue(size)
+        }
+        
+        return content._customAlignment(for: alignment, in: size)
+    }
+    
+    var swiftUI: some View {
+        content.swiftUI.alignmentGuide(alignment.swiftUI) {
+            computeValue(CGSize(width: $0.width, height: $0.height))
+        }
+    }
+}
+
+extension View_ {
+    func alignmentGuide(for alignment: HorizontalAlignment_, computeValue: @escaping (CGSize) -> CGFloat) -> some View_ {
+        CustomHAlignmentGuide(content: self, alignment: alignment, computeValue: computeValue)
+    }
+}

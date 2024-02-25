@@ -25,10 +25,21 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
         context.saveGState()
         let childSize = content._size(propsed: ProposedSize(size))
         
-        context.align(childSize, in: size, alignment: alignment)
+        let t = translation(for: content, in: size, childSize: childSize, alignment: alignment)
+        context.translateBy(x: t.x, y: t.y)
         content._render(context: context, size: childSize)
         
         context.restoreGState()
+    }
+    
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        let childSize = content._size(propsed: ProposedSize(size))
+        if let customX = content._customAlignment(for: alignment, in: childSize) {
+            let t = translation(for: content, in: size, childSize: childSize, alignment: self.alignment)
+            return t.x + customX
+        }
+        
+        return nil
     }
     
     var swiftUI: some View {
@@ -36,6 +47,36 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
     }
 }
 
+
+extension View_ {
+    func translation<V: View_>(for childView: V, in parentSize: CGSize, childSize: CGSize, alignment: Alignment_) -> CGPoint {
+        let parentPoint = alignment.point(for: parentSize)
+        var childPoint = alignment.point(for: childSize)
+        
+        if let customX = childView._customAlignment(for: alignment.horizontal, in: childSize) {
+            childPoint.x = customX
+        }
+        
+        // TODO vertical axis
+        return CGPoint(x: parentPoint.x - childPoint.x, y: parentPoint.y - childPoint.y)
+    }
+    
+    func translation<V: View_>(for sibiling: V, in size: CGSize, sibilingSize: CGSize, alignment: Alignment_) -> CGPoint {
+        var selfPoint = alignment.point(for: size)
+        var sibilingPoint = alignment.point(for: sibilingSize)
+        
+        if let customX = self._customAlignment(for: alignment.horizontal, in: sibilingSize) {
+            selfPoint.x = customX
+        }
+        
+        if let customX = sibiling._customAlignment(for: alignment.horizontal, in: sibilingSize) {
+            sibilingPoint.x = customX
+        }
+        
+        // TODO vertical axis
+        return CGPoint(x: selfPoint.x - sibilingPoint.x, y: selfPoint.y - sibilingPoint.y)
+    }
+}
 
 extension View_ {
     func frame(width: CGFloat? = nil, height: CGFloat? = nil, alignment: Alignment_ = .center) -> some View_ {
@@ -57,6 +98,10 @@ struct FixedSize<Content: View_>: View_, BuiltinView {
         if horizontal { proposed.width = nil }
         if vertical { proposed.height = nil }
         return content._size(propsed: proposed)
+    }
+    
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        content._customAlignment(for: alignment, in: size)
     }
     
     var swiftUI: some View {

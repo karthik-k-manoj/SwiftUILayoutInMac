@@ -19,7 +19,7 @@ func render<V: View_>(view: V, size: CGSize) -> Data {
     return CGContext.pdf(size: size) { context in
         view
             .frame(width: size.width, height: size.height)
-            .border(NSColor.green, width: 2)
+            //.border(NSColor.green, width: 2)
             ._render(context: context, size: size)
     }
 }
@@ -47,25 +47,17 @@ struct ContentView: View {
     // it takes the child size and proposes to the other view.
     // That's why you can use a gemoetry reader inside an overlay to measure the underlying view
     var sample: some View_ {
-        HStack_(children: [
-            AnyView_(Rectangle_()
-                .frame(minWidth: 150, maxWidth: 250)
-                .border(.blue, width: 5)
-                .measured
-            ),
-            AnyView_(Rectangle_()
-                .frame(maxWidth: 100)
-                .border(.green, width: 5)
-                .measured
-            ),
-            
-        ],
-                alignment: .center
-        )
-        .frame(width: width.rounded(), height: 100, alignment: .center)
-            .border(NSColor.yellow, width: 2)
+        Rectangle_()
+            .foregroundColor(color: NSColor.yellow)
+            .frame(width: 200, height: 200)
+            .alignmentGuide(for: .center, computeValue: { size in
+                size.width
+            })
+            .border(NSColor.white, width: 2.0)
+            .frame(width: 300, height: 300, alignment: .center)
+            //.border(NSColor.yellow, width: 2)
     }
-
+    
     // 300 is propsed width and ellipse is 150 wide
     // flexibile frame stays at 150
     

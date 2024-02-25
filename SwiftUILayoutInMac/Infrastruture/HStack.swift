@@ -17,6 +17,7 @@ final class LayoutState<A> {
 }
 
 struct HStack_: View_, BuiltinView {
+  
     let children: [AnyView_]
     var alignment: VerticalAlignment_ = .center
     var spacing: CGFloat? = 0
@@ -84,9 +85,17 @@ struct HStack_: View_, BuiltinView {
         
         self.sizes = sizes
     }
+    
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        fatalError("TODO")
+    }
 }
 
 class AnyViewBase: BuiltinView {
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        fatalError()
+    }
+    
     func render(context: RenderingContext, size: CGSize) {
         fatalError()
     }
@@ -110,10 +119,15 @@ final class AnyViewImpl<V: View_>: AnyViewBase {
     override func size(proposed: ProposedSize) -> CGSize {
         view._size(propsed: proposed)
     }
+    
+    override func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        view._customAlignment(for: alignment, in: size)
+    }
 }
 
 // Erases the type we are wrapping
 struct AnyView_: View_, BuiltinView {
+    
     let swiftUI: AnyView
     let impl: AnyViewBase
     
@@ -129,6 +143,11 @@ struct AnyView_: View_, BuiltinView {
     func size(proposed: ProposedSize) -> CGSize {
         impl.size(proposed: proposed)
     }
+    
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        impl.customAlignment(for: alignment, in: size)
+    }
+    
 }
 
 

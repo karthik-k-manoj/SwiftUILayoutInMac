@@ -48,6 +48,10 @@ struct ShapeView<S: Shape_>: BuiltinView, View_ {
     var shape: S
     var color: NSColor = .red
     
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        nil
+    }
+    
     func render(context: RenderingContext, size: CGSize) {
         context.saveGState()
         context.setFillColor(color.cgColor)

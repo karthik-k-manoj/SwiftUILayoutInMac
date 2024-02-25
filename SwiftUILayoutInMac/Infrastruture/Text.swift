@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Text_: View_, BuiltinView {
+    
     let text: String
     
     init(_ text: String) {
@@ -44,6 +45,10 @@ struct Text_: View_, BuiltinView {
         context.saveGState()
         CTFrameDraw(frame, context)
         context.restoreGState()
+    }
+    
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        return nil
     }
     
     var swiftUI: some View {

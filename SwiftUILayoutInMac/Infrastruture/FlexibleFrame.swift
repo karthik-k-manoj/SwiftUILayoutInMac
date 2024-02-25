@@ -55,13 +55,18 @@ struct FlexibleFrame<Content: View_>: View_, BuiltinView {
         return result
     }
     
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        fatalError()
+    }
+    
   //  100   200
     
     func render(context: RenderingContext, size: CGSize) {
         context.saveGState()
         let childSize = content._size(propsed: ProposedSize(size))
         
-        context.align(childSize, in: size, alignment: alignment)
+        fatalError() 
+       // context.align(childSize, in: size, alignment: alignment)
         content._render(context: context, size: childSize)
         
         context.restoreGState()

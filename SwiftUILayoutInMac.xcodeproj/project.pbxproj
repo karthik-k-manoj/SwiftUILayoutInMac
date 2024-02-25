@@ -22,6 +22,7 @@
 		DA8B7A2A2B74F01300239AE2 /* GeometryReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A292B74F01300239AE2 /* GeometryReader.swift */; };
 		DA8B7A2C2B76839C00239AE2 /* FlexibleFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A2B2B76839C00239AE2 /* FlexibleFrame.swift */; };
 		DA8B7A2E2B78C29A00239AE2 /* HStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A2D2B78C29A00239AE2 /* HStack.swift */; };
+		DA8B7A302B7E190E00239AE2 /* ForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A2F2B7E190E00239AE2 /* ForegroundColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		DA8B7A292B74F01300239AE2 /* GeometryReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryReader.swift; sourceTree = "<group>"; };
 		DA8B7A2B2B76839C00239AE2 /* FlexibleFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleFrame.swift; sourceTree = "<group>"; };
 		DA8B7A2D2B78C29A00239AE2 /* HStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStack.swift; sourceTree = "<group>"; };
+		DA8B7A2F2B7E190E00239AE2 /* ForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				DA8B7A1E2B73A21A00239AE2 /* Border.swift */,
 				DA8B7A202B73A22000239AE2 /* FixedFrame.swift */,
 				DA8B7A2B2B76839C00239AE2 /* FlexibleFrame.swift */,
+				DA8B7A2F2B7E190E00239AE2 /* ForegroundColor.swift */,
 				DA8B7A2D2B78C29A00239AE2 /* HStack.swift */,
 				DA8B7A292B74F01300239AE2 /* GeometryReader.swift */,
 				DA8B7A222B73A25B00239AE2 /* Alignment.swift */,
@@ -204,6 +207,7 @@
 				DA8B7A1F2B73A21A00239AE2 /* Border.swift in Sources */,
 				DA8B7A252B73A2E100239AE2 /* Text.swift in Sources */,
 				DA8B7A1B2B73A19700239AE2 /* View+BuiltinView.swift in Sources */,
+				DA8B7A302B7E190E00239AE2 /* ForegroundColor.swift in Sources */,
 				DA8B7A1D2B73A1F400239AE2 /* Shape+Color.swift in Sources */,
 				DA8B7A2E2B78C29A00239AE2 /* HStack.swift in Sources */,
 				DA8B7A082B72003A00239AE2 /* SwiftUILayoutInMacApp.swift in Sources */,

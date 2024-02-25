@@ -17,6 +17,7 @@ import SwiftUI
 // Parent proposes one size, child reports some size
 
 struct Overlay<Content: View_, O: View_>: View_, BuiltinView {
+   
     let content: Content
     let overlay: O
     let alignment: Alignment_
@@ -29,11 +30,20 @@ struct Overlay<Content: View_, O: View_>: View_, BuiltinView {
         
         // This object then proposes size (content size) to it's overlay view
         let childSize = overlay._size(propsed: ProposedSize(size))
-        context.saveGState()
-        context.align(childSize, in: size, alignment: alignment)
+        
+        let t = content.translation(for: overlay, in: size, sibilingSize: childSize, alignment: alignment)
+        context.translateBy(x: t.x, y: t.y)
+        context.saveGState() 
+    
+        //context.align(childSize, in: size, alignment: alignment)
         overlay._render(context: context, size: childSize)
         context.restoreGState()
     }
+    
+    func customAlignment(for alignment: HorizontalAlignment_, in size: CGSize) -> CGFloat? {
+        content._customAlignment(for: alignment, in: size)
+    }
+    
     
     // Here the parent of over lay will propose some size
     // It uses that proposed size this size to the content
