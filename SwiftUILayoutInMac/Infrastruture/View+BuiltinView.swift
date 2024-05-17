@@ -70,6 +70,8 @@ extension View_ {
         }
     }
     
+    // For render it is not proposed size but the size at which it has to render.
+    // Proposed size is for the layout pass
     func _render(context: RenderingContext, size: CGSize) {
         // ultimately we need to render so this will be a built in view
         // but we can recursively call body.render for all the views we write
