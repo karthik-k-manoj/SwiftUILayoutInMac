@@ -58,6 +58,13 @@ struct ContentView: View {
             //.border(NSColor.yellow, width: 2)
     }
     
+    // render with given size -> get child size that is border -> border calls content size -> that is frame -> Since we have frame it returns it's size
+    // translate to that point, now draw content witht that size, which calls frame's render with size proposed by the border ( which is the frame size)
+    // it is going to ask its child border with the propsosed size to the border, border ask it's frame it return 200 and 100
+    // now it is drawn and later border is drawn for the frame
+    
+    
+    
     // 300 is propsed width and ellipse is 150 wide
     // flexibile frame stays at 150
     
