@@ -12,7 +12,11 @@ protocol Shape_: View_ {
     func path(in rect: CGRect) -> CGPath
 }
 
+// Since `Shape_` is ` View_` it needs to conformt to `swiftUI: View`. Here `AnyShape` is `Shape` is `View`
 extension Shape_ {
+    // For ease of conveniece `Shape_` is a `View_`. It calls the body from render method
+    // body is a `ShapeView` by default color is `.red` and it draws the path with filled color as red
+    // `SwiftUI` does default color as foreground color
     var body: some View_ {
         ShapeView(shape: self)
     }
@@ -32,6 +36,7 @@ extension NSColor: View_ {
     }
 }
 
+// type eraser
 struct AnyShape: Shape {
     let _path: (CGRect) -> CGPath
     
@@ -39,11 +44,16 @@ struct AnyShape: Shape {
         _path = shape.path(in:)
     }
     
+    // This is the requirment for `Shape`
     func path(in rect: CGRect) -> Path {
         Path(_path(rect))
     }
 }
 
+/*
+ in swiftUI we deal with shapes such as rectangle, circle but internally there is something called
+ shape view which does the real action.
+ */
 struct ShapeView<S: Shape_>: BuiltinView, View_ {
     var shape: S
     var color: NSColor = .red

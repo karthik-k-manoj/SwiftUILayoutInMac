@@ -21,8 +21,29 @@ struct FixedFrame<Content: View_>: View_, BuiltinView {
         return CGSize(width: width ?? childSize.width, height: height ?? childSize.height)
     }
     
+    
+    // a view is asked for it's size by giving proposed size. It returns some size
+    // with that size it is going to render. Now again it's child is asked for it's size by giving
+    // the render size as the proposed size, child returns what size it needs and then child is
+    // asked to render with it's size. This goes one until we reach the leaf view which performs the
+    // real rendering. So we can see frame is used to size the content and where to draw the cotent
+    
+    // if this is called then this is a fixed frame. Now we are calculating the shape size.
+    // so we need to wrap the fixed frame inside another fixed frame. Now that fixed frame
+    // will ask it's content fixed frame to calcualte the size
     func render(context: RenderingContext, size: CGSize) {
         context.saveGState()
+        // get fixed frame size  -> this will return the child fixed frame size
+        // now we need to alignment this content within the outermost frame by translating x and y
+        // later we tell content fixed frame please render with your child size
+        // since fixed frame child (now will be parent) is a fixed frame, it come back here
+        // with it's size . Now it will ask it's content whihc can be anything. so it goes back
+        // to _render general method which see if it is a built in view or a user defined view.
+        // if user defined call body and call _render on it. If not then call render method on that
+        // built in view. It is a an ellipse so calls body which is a shape view. which calls _render
+        // now it is a built in view so call render on shape view. (before that parent is a fixed frame with it's size
+        // as given as the proposed size so shape view will return the same size. so translation is zero
+        // it is draw with the fixed frame size.
         let childSize = content._size(propsed: ProposedSize(size))
         
         let t = translation(for: content, in: size, childSize: childSize, alignment: alignment)

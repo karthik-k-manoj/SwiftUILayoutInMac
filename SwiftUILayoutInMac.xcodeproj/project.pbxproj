@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA6CF14A2BF7A023000AC404 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA6CF1492BF7A023000AC404 /* README.md */; };
 		DA8B7A082B72003A00239AE2 /* SwiftUILayoutInMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A072B72003A00239AE2 /* SwiftUILayoutInMacApp.swift */; };
 		DA8B7A0A2B72003A00239AE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7A092B72003A00239AE2 /* ContentView.swift */; };
 		DA8B7A0C2B72003B00239AE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA8B7A0B2B72003B00239AE2 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA6CF1492BF7A023000AC404 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DA8B7A042B72003A00239AE2 /* SwiftUILayoutInMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUILayoutInMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8B7A072B72003A00239AE2 /* SwiftUILayoutInMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUILayoutInMacApp.swift; sourceTree = "<group>"; };
 		DA8B7A092B72003A00239AE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				DA8B7A0B2B72003B00239AE2 /* Assets.xcassets */,
 				DA8B7A102B72003B00239AE2 /* SwiftUILayoutInMac.entitlements */,
 				DA8B7A0D2B72003B00239AE2 /* Preview Content */,
+				DA6CF1492BF7A023000AC404 /* README.md */,
 			);
 			path = SwiftUILayoutInMac;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA6CF14A2BF7A023000AC404 /* README.md in Resources */,
 				DA8B7A0F2B72003B00239AE2 /* Preview Assets.xcassets in Resources */,
 				DA8B7A0C2B72003B00239AE2 /* Assets.xcassets in Resources */,
 			);

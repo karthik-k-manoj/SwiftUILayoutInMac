@@ -53,6 +53,7 @@ extension View_ where Body == Never {
 extension Never: View_ {
    typealias Body = Never
     
+    // This works because `Never` is already been conformed to `View` in SwiftUI module
     var swiftUI: Never { fatalError("This should never be called") }
 }
 
@@ -75,6 +76,8 @@ extension View_ {
     func _render(context: RenderingContext, size: CGSize) {
         // ultimately we need to render so this will be a built in view
         // but we can recursively call body.render for all the views we write
+        // we have our views and built in views backed up NSView or UIVIew or render to the context
+        // we have render ultimately
         
         if let builtin = self as? BuiltinView {
             builtin.render(context: context, size: size)

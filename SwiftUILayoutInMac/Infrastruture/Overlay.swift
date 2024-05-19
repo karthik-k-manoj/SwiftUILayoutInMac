@@ -16,6 +16,13 @@ import SwiftUI
 // From parent to the last child will have the size method called
 // Parent proposes one size, child reports some size
 
+
+// Overlay first renders it's child and then it lays the view on top of it, it takes the child size
+// and propose to the over lay view. That's why you can use geometery reader to measure the underlying view
+
+// What is the size of an overlay is the size of it's content . That size is passed to the overlay view
+// as the propsez size
+
 struct Overlay<Content: View_, O: View_>: View_, BuiltinView {
    
     let content: Content
@@ -59,6 +66,7 @@ struct Overlay<Content: View_, O: View_>: View_, BuiltinView {
     }
 }
 
+// Overlay is a view that takes the overlay view
 extension View_ {
     func overlay<O: View_>(_ overlay: O, alignment: Alignment_ = .center) -> some View_ {
         Overlay(content: self, overlay: overlay, alignment: alignment)
