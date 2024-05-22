@@ -83,3 +83,16 @@ extension View_ {
         FlexibleFrame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight, alignment: alignment, content: self)
     }
 }
+
+
+/*
+ Flexible frame has a lot of features. When the parent proposes a size to it, it check if the proposed size width and height are non optionals.
+ If optionals they use ideal height and ideal weight. If they are also optional then they use the default size of 10 X 10.
+ 
+ Now if min and max are set, then this value is constrainted to be within this range. This size is then proposed to the child.
+ Child returns it's size (content size) but since min and max are already set the constrainted proposed size is returned as the reported size
+ 
+ 
+ if only min is set then proposed size would be clamped between min size and content size
+ if only max is set then proposed size would be clamped between content size and max size
+ */
