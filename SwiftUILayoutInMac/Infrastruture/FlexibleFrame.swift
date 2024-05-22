@@ -95,4 +95,10 @@ extension View_ {
  
  if only min is set then proposed size would be clamped between min size and content size
  if only max is set then proposed size would be clamped between content size and max size
+ 
+ if none of the constraints are set, then whateever proposed size comes in is given to child and whatever child reports will be the reported size for the flexible frame.
+ If only ideal size is mentioned and if the proposesd size is nil then ideal size is the new proposed size which is passed on to the child but again reported size for the flexible
+ frame would be the child's reported size
+ 
+ If fixed size is applied to the flexible frame and it has an ideal size then it would take up that size as the proposed size and depending upon
  */
